@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(App());
+  runApp(MaterialApp(home: App()));
 }
 
 /* class App extends StatelessWidget {
@@ -10,8 +10,7 @@ void main() {
   var _contato = "67 9 9999-9999";
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(title: Text("Meu cartão de visitas"), centerTitle: true),
         body: Center(
           child: Column(
@@ -31,8 +30,7 @@ void main() {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 } */
 
@@ -47,8 +45,7 @@ class AppState extends State<App> {
   var cont = 0;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: Center(
           child: (Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -65,12 +62,11 @@ class AppState extends State<App> {
             ],
           )),
         ),
-      ),
-    );
+      );
   }
 } */
 
-class App extends StatefulWidget {
+/* class App extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return AppState();
@@ -102,6 +98,46 @@ class AppState extends State<App> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+} */
+
+class App extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return AppState();
+  }
+}
+
+class AppState extends State<App> {
+  var _nome;
+  var _meuController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Form(
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(label: Text("Entre com o nome: ")),
+              controller: _meuController,
+            ),
+            ElevatedButton(
+              child: Text("Salvar"),
+              onPressed: () {
+                _nome = _meuController.text;
+
+                if (_nome.isNotEmpty) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Olá, $_nome")));
+                  _meuController.clear();
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
