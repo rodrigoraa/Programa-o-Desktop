@@ -4,6 +4,7 @@ void main() {
   runApp(MaterialApp(home: App()));
 }
 
+//ATIVIDADE 1-------------------------------------------------------------------------------------------------------
 /* class App extends StatelessWidget {
   var _nome = "Rodrigo";
   var _profissao = "Assistente";
@@ -33,6 +34,8 @@ void main() {
       );
   }
 } */
+
+//ATIVIDADE 2-------------------------------------------------------------------------------------------------------
 
 /* class App extends StatefulWidget {
   @override
@@ -65,6 +68,8 @@ class AppState extends State<App> {
       );
   }
 } */
+
+//ATIVIDADE 3-------------------------------------------------------------------------------------------------------
 
 /* class App extends StatefulWidget {
   @override
@@ -104,7 +109,9 @@ class AppState extends State<App> {
   }
 } */
 
-class App extends StatefulWidget {
+//ATIVIDADE 4-------------------------------------------------------------------------------------------------------
+
+/* class App extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return AppState();
@@ -138,6 +145,65 @@ class AppState extends State<App> {
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+} */
+
+//ATIVIDADE 5-------------------------------------------------------------------------------------------------------
+
+class App extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return AppState();
+  }
+}
+
+class AppState extends State<App> {
+  final _formKey = GlobalKey<FormState>();
+  var _nome = TextEditingController();
+  var _email = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Form(
+        key: _formKey,
+        child: Center(
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _nome,
+                decoration: InputDecoration(labelText: "Seu nome: "),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Digite seu nome: ";
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _email,
+                decoration: InputDecoration(labelText: "Seu e-mail: "),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Digite seu e-mail: ";
+                  }
+                  return null;
+                },
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    print("Formulário válido! ");
+                    print("Olá, ${_nome.text}");
+                    print("E-mail: ${_email.text}");
+                  }
+                },
+                child: Text("Salvar"),
+              ),
+            ],
+          ),
         ),
       ),
     );
